@@ -16,10 +16,11 @@ from models.user import User
 def status():
     return jsonify({"status": "OK"})
 
+
 @app_views.route('/stats')
 def stats():
-    classes = {"amenities": Amenity, "cities": City,\
-               "places": Place, "reviews": Review,\
+    classes = {"amenities": Amenity, "cities": City,
+               "places": Place, "reviews": Review,
                "states": State, "users": User}
     for i in classes:
         classes[i] = storage.count(classes[i])
