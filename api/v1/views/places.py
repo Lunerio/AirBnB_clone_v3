@@ -50,7 +50,7 @@ def delete_place(place_id):
 def create_place(city_id):
     city = storage.get(City, city_id)
     if city is None:
-        abort(404, "City not here")
+        abort(404)
     body = request.get_json()
     if body is None:
         abort(400, "Not a JSON")
