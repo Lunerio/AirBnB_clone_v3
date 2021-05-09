@@ -49,7 +49,7 @@ def delete_place(place_id):
                  strict_slashes=False)
 def create_place(city_id):
     city = storage.get(City, city_id)
-    if place is None:
+    if city is None:
         abort(404)
     body = request.get_json()
     if body is None:
@@ -81,7 +81,7 @@ def update_place(place_id):
     for key in body:
         if key != "id" and key != "updated_at"\
                 and key != "created_at" and key != "user_id"\
-                    and key != "city_id":
+                and key != "city_id":
             element_dict[key] = body[key]
     storage.delete(elements)
     place = Place(**element_dict)
