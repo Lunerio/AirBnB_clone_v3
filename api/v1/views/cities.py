@@ -31,6 +31,7 @@ def return_city(city_id):
     else:
         return jsonify(elements.to_dict())
 
+
 @app_views.route('/cities/<city_id>', methods=["DELETE"],
                  strict_slashes=False)
 def delete_city(city_id):
@@ -43,7 +44,8 @@ def delete_city(city_id):
         return jsonify({})
 
 
-@app_views.route('/states/<state_id>/cities', methods=["POST"], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities', methods=["POST"],
+                 strict_slashes=False)
 def create_city(state_id):
     state = storge.get(State, state_id)
     if state is None:
