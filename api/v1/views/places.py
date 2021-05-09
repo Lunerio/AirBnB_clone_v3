@@ -81,7 +81,7 @@ def update_place(place_id):
     for key in body:
         if key != "id" and key != "updated_at"\
                 and key != "created_at" and key != "user_id"\
-                    and key != "city_id":
+                and key != "city_id":
             element_dict[key] = body[key]
     storage.delete(elements)
     place = Place(**element_dict)
