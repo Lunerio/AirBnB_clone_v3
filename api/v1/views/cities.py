@@ -47,7 +47,7 @@ def delete_city(city_id):
 @app_views.route('/states/<state_id>/cities', methods=["POST"],
                  strict_slashes=False)
 def create_city(state_id):
-    state = storge.get(State, state_id)
+    state = storage.get(State, state_id)
     if state is None:
         abort(404)
     body = request.get_json()
