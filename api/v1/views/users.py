@@ -1,4 +1,4 @@
-!/usr/bin/python3
+#!/usr/bin/python3
 """ Handle every RESTapi actions
 """
 from flask import abort, jsonify, request
