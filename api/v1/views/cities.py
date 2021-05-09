@@ -55,6 +55,7 @@ def create_city(state_id):
         abort(400, "Not a JSON")
     if 'name' not in body.keys():
         abort(400, "Missing name")
+    body['state_id'] = state_id
     city = City(**body)
     city.save()
     city_dict = city.to_dict()
