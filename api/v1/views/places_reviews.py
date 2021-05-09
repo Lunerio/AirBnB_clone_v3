@@ -80,7 +80,7 @@ def update_review(review_id):
     for key in body:
         if key != "id" and key != "updated_at"\
                 and key != "created_at" and key != "user_id"\
-                    and key != "place_id":
+                and key != "place_id":
             element_dict[key] = body[key]
     storage.delete(elements)
     review = Review(**element_dict)
