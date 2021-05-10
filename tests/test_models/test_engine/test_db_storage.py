@@ -41,7 +41,7 @@ class TestDBStorageDocs(unittest.TestCase):
         """Test tests/test_models/test_db_storage.py conforms to PEP8."""
         pep8s = pep8.StyleGuide(quiet=True)
         result = pep8s.check_files(['tests/test_models/test_engine/\
-test_db_storage.py'])
+            test_db_storage.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -89,7 +89,7 @@ class TestFileStorage(unittest.TestCase):
 
 
 class TestDBStorage(unittest.TestCase):
-    """ Test the count and get methods
+    """ Test the count and get methodsfile
     """
     @unittest.skipIf(models.storage_t != 'db', "testing db storage")
     def test_get(self):
@@ -101,7 +101,7 @@ class TestDBStorage(unittest.TestCase):
         inst1.save()
         self.assertTrue(db_instance.get(State, inst_id) == inst1)
 
-    @unittest.skipIf(models.storage_t != 'db', "testing db storage")
+    @unittest.skipIf(models.storage_t != 'db', "testing file storage")
     def test_count(self):
         """ Test the count method
         """
