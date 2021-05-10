@@ -4,10 +4,10 @@
 from flask import abort, jsonify, request
 from api.v1.views import app_views
 import json
-from models.place import Place
-from models.user import User
-from models.review import Review
 from models import storage
+from models.place import Place
+from models.review import Review
+from models.user import User
 
 
 @app_views.route('/places/<place_id>/reviews', strict_slashes=False)
@@ -17,7 +17,7 @@ def return_reviews_by_place_id(place_id):
         abort(404)
     reviews = storage.all(Review)
     review_place = []
-    for elements in review.values():
+    for elements in reviews.values():
         if place_id in elements.to_dict().values():
             review_place.append(elements.to_dict())
     return jsonify(review_place)
@@ -48,7 +48,8 @@ def delete_review(review_id):
 @app_views.route('/places/<place_id>/reviews', methods=["POST"],
                  strict_slashes=False)
 def create_review(place_id):
-    if storage.get(Place, place_id) is None:
+    place = storage.get(Place, place_id)
+    if place is None:
         abort(404)
     body = request.get_json()
     if body is None:
