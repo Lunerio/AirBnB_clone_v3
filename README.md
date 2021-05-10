@@ -55,11 +55,23 @@ Classes inherited from Base Model:
 * [user.py](/models/user.py)
 
 #### `/models/engine` directory contains File Storage class that handles JASON serialization and deserialization :
+[db_storage.py](/models/engine/db_storage.py) - saves instances to a DataBase & loads back to instances
+* `def all(self)` - returns the dictionary __objects
+* `def new(self, obj)` - adds object to database session
+* `def save(self)` - commits changes to database
+* ` def reload(self)` -  reloads data from the database
+* `def delete(self, obj=None)` - deletes from the current database session obj if not None
+* `def get(self, cls, id)` - returns the object based on class_name and ID
+* `def count(self, cls=None)` - returns the number of objects in storage
+
 [file_storage.py](/models/engine/file_storage.py) - serializes instances to a JSON file & deserializes back to instances
 * `def all(self)` - returns the dictionary __objects
 * `def new(self, obj)` - sets in __objects the obj with key <obj class name>.id
 * `def save(self)` - serializes __objects to the JSON file (path: __file_path)
+* `def delete(self, obj=None)` - deletes from the dictionary the obj if not None
 * ` def reload(self)` -  deserializes the JSON file to __objects
+* `def get(self, cls, id)` - returns the object based on class_name and ID
+* `def count(self, cls=None)` - returns the number of objects in storage
 
 #### `/tests` directory contains all unit test cases for this project:
 [/test_models/test_base_model.py](/tests/test_models/test_base_model.py) - Contains the TestBaseModel and TestBaseModelDocs classes
@@ -156,6 +168,8 @@ No known bugs at this time.
 ## Authors
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
+Gabriel Prochnau - [Github](https://github.com/Rielch)
+Hugo Gomez - [Github](https://github.com/Lunerio)
 
 Second part of Airbnb: Joann Vuong
 ## License
