@@ -135,7 +135,7 @@ def search_places():
     if cities:
         city_objs = []
         for city_id in cities:
-            city_objs.append(storage.get(City, citi_id))
+            city_objs.append(storage.get(City, city_id))
         for city in city_objs:
             if city:
                 for place in city.places:
