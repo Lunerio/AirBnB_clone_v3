@@ -153,5 +153,5 @@ def search_places():
     search = []
     for place in list_places:
         place_dir = place.to_dict()
-        seearch.append(place_dir.pop('amenities', None))
+        search.append(place_dir.pop('amenities', None))
     return jsonify(search)
