@@ -144,9 +144,8 @@ def search_places():
     if amenities:
         if not list_places:
             list_places = storage.all(Place).values()
-        amenity_objs = []
-        for amenity_id in amenities:
-            amenity_objs.append(storage.get(Amenity, amenity_id))
+        amenity_objs = [storage.get(Amenity, amenity_id)
+                        for amenity_id in amenities]
         list_places = [place for place in list_places
                        if all([amenity in place.amenities
                                for amenity in amenity_objs])]
