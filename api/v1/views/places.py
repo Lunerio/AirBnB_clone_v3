@@ -106,9 +106,9 @@ def update_place(place_id):
 def search_places():
     """Search for places
     """
-if request.get_json() is None:
-    abort(400, description="Not a JSON")
-    data = request.get_json()
+    if request.get_json() is None:
+        abort(400, description="Not a JSON")
+        data = request.get_json()
 
     if data and len(data):
         states = data.get('states', None)
