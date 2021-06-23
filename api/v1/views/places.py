@@ -152,5 +152,5 @@ def search_places():
                                for amenity in amenity_objs])]
     search = []
     for place in list_places:
-        search.append(place.to_dict().pop('amenities', None))
+        search.append(place.to_dict())
     return jsonify(search)
