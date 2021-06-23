@@ -29,6 +29,7 @@ def return_places_by_city_id(city_id):
 @app_views.route('/places/<place_id>', methods=["GET"],
                  strict_slashes=False)
 def return_place(place_id):
+    """Return a place by city_id"""
     elements = storage.get(Place, place_id)
     if elements is None:
         abort(404)
