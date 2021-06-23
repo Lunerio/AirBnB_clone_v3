@@ -142,7 +142,7 @@ def search_places():
                     if place not in list_places:
                         list_places.append(place)
     if amenities:
-        if not list_places:
+        if len(list_places) == 0:
             list_places = storage.all(Place).values()
         amenity_objs = []
         for amenity_id in amenities:
