@@ -87,3 +87,56 @@ def update_place(place_id):
     place = Place(**element_dict)
     place.save()
     return jsonify(place.to_dict()), 200
+
+
+@app_views.get('/places_search', methods=['POST'],
+               strict_slashes=False)
+def search_places():
+    if request.json() is None:
+        abort(400, description="Not a JSON")
+    data = request.json()
+    if data and len(data):
+        states = data.get('states', None)
+        cities = data.get('cities', None)
+        amenities = data.get('amenities', None)
+    list_places = []
+    if not data or not len(data) or (
+            not states and
+            not cities and
+            not amenities):
+        places = storage.all(Place).values()
+        for place in places:
+            list_places.append(place.to_dict())
+        return jsonify(list_places)
+    if states:
+        state_objs = []
+        for state_id in states:
+            state_objs.append(storage.get(State, state_id)])
+        for state in state_objs:
+            if state:
+                for city in state.cities:
+                    if city:
+                        for place in city.places:
+                            list_places.append(place)
+    if cities:
+        city_objs = []
+        for city_id in cities:
+            city_objs.append(storage.get(City, citi_id))
+        for city in city_objs:
+            if city:
+                for place in city.places:
+                    if place not in places_list:
+                        places_list.append(place)
+    if amenities:
+        if len(list_places) == 0:
+            list_places = storage.all(Place).values()
+        amenity_objs = []
+        for amenity_id in amenities:
+            amenity_objs.append(storage.get(Amenity, amenity_id))
+        list_places = [place for place in list_places
+                       if all([amenity in place.amenities
+                               for amenity in amenity_objs])]
+    search = []
+    for place in list_places:
+        search.append(place.to_dict().pop('amenities', None))
+    return jsonify(search)
