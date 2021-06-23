@@ -14,7 +14,8 @@ from models import storage
 
 @app_views.route('/cities/<city_id>/places', strict_slashes=False)
 def return_places_by_city_id(city_id):
-    """Return places in a city"""
+    """Return places in a city
+    """
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
@@ -29,7 +30,8 @@ def return_places_by_city_id(city_id):
 @app_views.route('/places/<place_id>', methods=["GET"],
                  strict_slashes=False)
 def return_place(place_id):
-    """Return a place by city_id"""
+    """Return a place by city_id
+    """
     elements = storage.get(Place, place_id)
     if elements is None:
         abort(404)
@@ -40,7 +42,8 @@ def return_place(place_id):
 @app_views.route('/places/<place_id>', methods=["DELETE"],
                  strict_slashes=False)
 def delete_place(place_id):
-    """Delete place"""
+    """Delete place
+    """
     elements = storage.get(Place, place_id)
     if elements is None:
         abort(404)
@@ -53,7 +56,8 @@ def delete_place(place_id):
 @app_views.route('/cities/<city_id>/places', methods=["POST"],
                  strict_slashes=False)
 def create_place(city_id):
-    """Create place"""
+    """Create place
+    """
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
@@ -76,7 +80,8 @@ def create_place(city_id):
 @app_views.route('/places/<place_id>', methods=["PUT"],
                  strict_slashes=False)
 def update_place(place_id):
-    """Update place"""
+    """Update place
+    """
     elements = storage.get(Place, place_id)
     if elements is None:
         abort(404)
@@ -99,7 +104,8 @@ def update_place(place_id):
 @app_views.get('/places_search', methods=['POST'],
                strict_slashes=False)
 def search_places():
-    """Search for places"""
+    """Search for places
+    """
     if request.json() is None:
         abort(400, description="Not a JSON")
     data = request.json()
