@@ -142,7 +142,7 @@ def search_places():
                     if place not in list_places:
                         list_places.append(place)
     if amenities:
-        if len(list_places) == 0:
+        if not list_places:
             list_places = storage.all(Place).values()
         amenity_objs = []
         for amenity_id in amenities:
@@ -152,5 +152,6 @@ def search_places():
                                for amenity in amenity_objs])]
     search = []
     for place in list_places:
-        search.append(place.to_dict().pop('amenities', None))
+        place_dir = place.to_dict()
+        seearch.append(place_dir.pop('amenities', None))
     return jsonify(search)
