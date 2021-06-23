@@ -139,8 +139,8 @@ def search_places():
         for city in city_objs:
             if city:
                 for place in city.places:
-                    if place not in places_list:
-                        places_list.append(place)
+                    if place not in list_places:
+                        list_places.append(place)
     if amenities:
         if len(list_places) == 0:
             list_places = storage.all(Place).values()
