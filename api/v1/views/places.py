@@ -111,7 +111,7 @@ def search_places():
     if states:
         state_objs = []
         for state_id in states:
-            state_objs.append(storage.get(State, state_id)])
+            state_objs.append(storage.get(State, state_id))
         for state in state_objs:
             if state:
                 for city in state.cities:
